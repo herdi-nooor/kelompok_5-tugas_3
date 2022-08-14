@@ -7,7 +7,7 @@ namespace SpaceInvander.Boot
 {
     public class SceneLoader : BaseLoader<SceneLoader>
     {
-        protected override string SplashScene => throw new System.NotImplementedException();
+        protected override string SplashScene => "SplashScreen";
     }
 
 }

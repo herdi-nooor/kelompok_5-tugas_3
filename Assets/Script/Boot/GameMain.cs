@@ -10,17 +10,17 @@ namespace SpaceInvander.Boot
     {
         protected override IConnector[] GetConnectors()
         {
-            throw new System.NotImplementedException();
+            return null;
         }
 
         protected override IController[] GetDependencies()
         {
-            throw new System.NotImplementedException();
+            return null;
         }
 
         protected override IEnumerator StartInit()
         {
-            throw new System.NotImplementedException();
+            yield return null;
         }
     }
 }
