@@ -5,27 +5,41 @@ using Agate.MVC.Base;
 using SpaceInvander.Boot;
 using Agate.MVC.Core;
 using SpaceInvander.Gameplay.Bullet;
+using SpaceInvader.Module.Spaceship;
+using SpaceInvader.Gameplay;
+using SpaceInvader.Module.InputManager;
 
 namespace SpaceInvander.Gameplay
 {
     public class GameplayLauncher : 
         SceneLauncher<GameplayLauncher, GameplayView>
     {
+        private SpaceshipController _spaceship;
+        private InputController _input;
+
         public override string SceneName => "Gameplay";
         private BulletController _bullet;
         protected override IConnector[] GetSceneConnectors()
         {
-            return null;
+            return new IConnector[]{
+                new GameplayConnector()
+            };
         }
 
         protected override IController[] GetSceneDependencies()
         {
-            return new IController[] { new BulletController() };
+            return new IController[]{
+                new SpaceshipController(),
+                new InputController(),
+                new BulletController()
+            };
         }
 
         protected override IEnumerator InitSceneObject()
         {
             _bullet.SetView(_view.bulletView);
+            _spaceship.SetView(_view.SpaceshipView);
+            _input.SetView(_view.InputView);
             yield return null;
         }
 
