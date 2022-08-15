@@ -8,9 +8,6 @@ namespace SpaceInvader.Module.Spaceship
 {
     public class SpaceshipView : ObjectView<ISpaceshipModel>
     {
-        private UnityAction _onMoveLeft;
-        private UnityAction _onMoveRight;
-        private UnityAction _onSpaceshipBullet;
         private UnityAction _onCollidedWithEnemyBullet;
         private UnityAction _onCollidedWithPowerUp;
 

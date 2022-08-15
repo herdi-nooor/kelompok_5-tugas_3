@@ -17,13 +17,13 @@ namespace SpaceInvader.Module.Spaceship
 
         public void OnMoveLeft()
         {
-            Vector3 position = _model.position + (Vector3.left * Time.deltaTime);
+            Vector3 position = _model.position + (Vector3.left * Time.deltaTime * 3);
             _model.SetPosition(position);
         }
 
         public void OnMoveRight()
         {
-            Vector3 position = _model.position + (Vector3.right * Time.deltaTime);
+            Vector3 position = _model.position + (Vector3.right * Time.deltaTime * 3);
             _model.SetPosition(position);
         }
 
