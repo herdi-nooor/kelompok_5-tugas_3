@@ -1,5 +1,6 @@
 using Agate.MVC.Base;
 using Agate.MVC.Core;
+using SpaceInvader.Message;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,25 +12,37 @@ namespace SpaceInvader.Module.Spaceship
         public override void SetView(SpaceshipView view)
         {
             base.SetView(view);
-            view.SetCallbacks(OnMoveLeft, OnMoveRight);
+            view.SetCallbacks(OnCollidedWithEnemyBullet, OnCollidedWithPowerUp);
         }
 
-        private void OnMoveLeft()
+        public void OnMoveLeft()
         {
-            if (Input.GetKey(KeyCode.LeftArrow))
-            {
-                Vector3 position = _model.position + (Vector3.left * Time.deltaTime);
-                _model.SetPosition(position);
-            }
+            Vector3 position = _model.position + (Vector3.left * Time.deltaTime);
+            _model.SetPosition(position);
         }
 
-        private void OnMoveRight()
+        public void OnMoveRight()
         {
-            if (Input.GetKey(KeyCode.RightArrow))
-            {
-                Vector3 position = _model.position + (Vector3.right * Time.deltaTime);
-                _model.SetPosition(position);
-            }
+            Vector3 position = _model.position + (Vector3.right * Time.deltaTime);
+            _model.SetPosition(position);
+        }
+
+        public void OnSpaceshipBullet()
+        {
+            Debug.Log("BANG!");
+            Publish(new SpaceshipBulletMessage());
+        }
+
+        private void OnCollidedWithEnemyBullet()
+        {
+            Debug.Log("Ouch!");
+            Publish(new LoseLivesMessage());
+        }
+
+        private void OnCollidedWithPowerUp()
+        {
+            Debug.Log("Super Power!");
+            Publish(new PowerUpActivateMessage());
         }
     }
 

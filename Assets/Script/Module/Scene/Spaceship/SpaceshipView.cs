@@ -10,11 +10,14 @@ namespace SpaceInvader.Module.Spaceship
     {
         private UnityAction _onMoveLeft;
         private UnityAction _onMoveRight;
+        private UnityAction _onSpaceshipBullet;
+        private UnityAction _onCollidedWithEnemyBullet;
+        private UnityAction _onCollidedWithPowerUp;
 
-        public void SetCallbacks(UnityAction onMoveLeft, UnityAction onMoveRight)
+        public void SetCallbacks(UnityAction onCollidedWithEnemyBullet, UnityAction onCollidedWithPowerUp)
         {
-            _onMoveLeft = onMoveLeft;
-            _onMoveRight = onMoveRight;
+            _onCollidedWithEnemyBullet = onCollidedWithEnemyBullet;
+            _onCollidedWithPowerUp = onCollidedWithPowerUp;
         }
 
         protected override void InitRenderModel(ISpaceshipModel model)
@@ -29,8 +32,19 @@ namespace SpaceInvader.Module.Spaceship
 
         private void Update()
         {
-            _onMoveLeft?.Invoke();
-            _onMoveRight?.Invoke();
+
+        }
+
+        public void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.gameObject.CompareTag("EnemyBullet"))
+            {
+                _onCollidedWithEnemyBullet?.Invoke();
+            }
+            else if (collision.gameObject.CompareTag("PowerUp"))
+            {
+                _onCollidedWithPowerUp?.Invoke();
+            }
         }
     }
 
