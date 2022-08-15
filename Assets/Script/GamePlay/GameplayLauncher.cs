@@ -4,12 +4,15 @@ using UnityEngine;
 using Agate.MVC.Base;
 using SpaceInvander.Boot;
 using Agate.MVC.Core;
+using SpaceInvader.Module.Spaceship;
 
 namespace SpaceInvander.Gameplay
 {
     public class GameplayLauncher : 
         SceneLauncher<GameplayLauncher, GameplayView>
     {
+        private SpaceshipController _spaceship;
+
         public override string SceneName => "Gameplay";
         protected override IConnector[] GetSceneConnectors()
         {
@@ -18,11 +21,14 @@ namespace SpaceInvander.Gameplay
 
         protected override IController[] GetSceneDependencies()
         {
-            return null;
+            return new IController[]{
+                new SpaceshipController()
+            };
         }
 
         protected override IEnumerator InitSceneObject()
         {
+            _spaceship.SetView(_view.SpaceshipView);
             yield return null;
         }
 
