@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HighScoreData : MonoBehaviour
+public class CreateInstanceContainerController : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
