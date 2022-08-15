@@ -26,16 +26,26 @@ namespace SpaceInvander.Gameplay.Bullet
         public override void SetView(BulletView view)
         {
             base.SetView(view);
-            view.SetCallbacks(OnMoveBullet);
+            view.SetCallbacks(OnMoveBullet(nameObject, gunPosition));
         }
 
-        public void OnMoveBullet()
+        public void OnMoveBullet(string nameObject, Vector2 gunPosition)
         {
-            Vector2 position = _model.position + (Vector2.up * Time.deltaTime * 5);
-            _model.SetPosition(position);
+            if (nameObject == "Spaceship")
+            {
+                Vector2 position = _model.position + (Vector2.up * Time.deltaTime * 5);
+                _model.SetPosition(position);
+            }
+            else if (nameObject == "Enemy")
+            {
+                Vector2 position = _model.position + (Vector2.up * Time.deltaTime * 5);
+                _model.SetPosition(position);
+            }
         }
 
-        //fungsi yang di panggil di connector 
+        
+
+        //fungsi yang di panggil di connector
 
         public void OnStartPlay(StartPlayMessage message)
         {

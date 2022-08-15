@@ -1,6 +1,7 @@
 using Agate.MVC.Base;
 using SpaceInvader.Message;
 using SpaceInvader.Module.Spaceship;
+using SpaceInvander.Gameplay.Bullet;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,7 @@ namespace SpaceInvader.Gameplay
     {
         private SpaceshipController _spaceship;
         // tambah private bullet
+        private BulletController _bullet;
         
         public void OnMoveLeft(MoveLeftMessage message)
         {
@@ -27,7 +29,11 @@ namespace SpaceInvader.Gameplay
             _spaceship.OnSpaceshipBullet();
         }
         //buat fungsi baru
-        // panggil bullet disini
+        public void OnMoveBullet(MoveBulletMessage message)
+        {
+            // panggil bullet disini
+            _bullet.OnMoveBullet();
+        }
 
         protected override void Connect()
         {
@@ -35,6 +41,7 @@ namespace SpaceInvader.Gameplay
             Subscribe<MoveRightMessage>(OnMoveRight);
             Subscribe<FireMessage>(OnSpaceshipBullet);
             //subcribe nama fungsi
+            Subscribe<MoveBulletMessage>(OnMoveBullet);
         }
 
         protected override void Disconnect()
@@ -43,6 +50,7 @@ namespace SpaceInvader.Gameplay
             Unsubscribe<MoveRightMessage>(OnMoveRight);
             Unsubscribe<FireMessage>(OnSpaceshipBullet);
             //unsubscribe nama fungsi
+            Unsubscribe<MoveBulletMessage>(OnMoveBullet);
         }
     }
 }

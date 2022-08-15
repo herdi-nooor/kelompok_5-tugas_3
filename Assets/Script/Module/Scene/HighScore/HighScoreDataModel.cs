@@ -11,7 +11,7 @@ namespace SpaceInvander.Menu.HighScore
         public SortedDictionary<string, int> DataScore => new SortedDictionary<string, int>();
         private List<string> _topScore;
 
-        private void Add(string name, int score)
+        public void Add(string name, int score)
         {
             if (name != null)
             {
