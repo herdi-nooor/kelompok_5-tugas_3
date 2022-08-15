@@ -34,6 +34,9 @@ namespace SpaceInvander.Gameplay.Bullet
             Vector2 position = _model.position + (Vector2.up * Time.deltaTime * 5);
             _model.SetPosition(position);
         }
+
+        //fungsi yang di panggil di connector 
+
         public void OnStartPlay(StartPlayMessage message)
         {
         }

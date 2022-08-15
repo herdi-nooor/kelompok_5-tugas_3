@@ -10,6 +10,7 @@ namespace SpaceInvader.Gameplay
     public class GameplayConnector : BaseConnector
     {
         private SpaceshipController _spaceship;
+        // tambah private bullet
         
         public void OnMoveLeft(MoveLeftMessage message)
         {
@@ -25,12 +26,15 @@ namespace SpaceInvader.Gameplay
         {
             _spaceship.OnSpaceshipBullet();
         }
+        //buat fungsi baru
+        // panggil bullet disini
 
         protected override void Connect()
         {
             Subscribe<MoveLeftMessage>(OnMoveLeft);
             Subscribe<MoveRightMessage>(OnMoveRight);
             Subscribe<FireMessage>(OnSpaceshipBullet);
+            //subcribe nama fungsi
         }
 
         protected override void Disconnect()
@@ -38,6 +42,7 @@ namespace SpaceInvader.Gameplay
             Unsubscribe<MoveLeftMessage>(OnMoveLeft);
             Unsubscribe<MoveRightMessage>(OnMoveRight);
             Unsubscribe<FireMessage>(OnSpaceshipBullet);
+            //unsubscribe nama fungsi
         }
     }
 }
