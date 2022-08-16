@@ -1,7 +1,7 @@
 using Agate.MVC.Base;
 using SpaceInvader.Message;
 using SpaceInvader.Module.Spaceship;
-using SpaceInvander.Gameplay.Bullet;
+using SpaceInvader.Gameplay.Bullet;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -28,10 +28,11 @@ namespace SpaceInvader.Gameplay
         {
             _spaceship.OnSpaceshipBullet();
         }
+
         //buat fungsi baru
         public void OnMoveBullet(MoveBulletMessage message)
         {
-            // panggil bullet disini
+            // panggil bullet/fungdsi disini
             _bullet.OnMoveBullet();
         }
 

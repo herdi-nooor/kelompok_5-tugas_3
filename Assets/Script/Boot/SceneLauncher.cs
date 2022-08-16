@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SpaceInvander.Boot
+namespace SpaceInvader.Boot
 {
         public abstract class SceneLauncher<TLauncher, TView> : BaseLauncher<TLauncher, TView>
          where TLauncher : SceneLauncher<TLauncher, TView>

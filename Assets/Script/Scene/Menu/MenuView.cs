@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-namespace SpaceInvander.Menu
+namespace SpaceInvader.Menu
 {
     public class MenuView : BaseSceneView
     {

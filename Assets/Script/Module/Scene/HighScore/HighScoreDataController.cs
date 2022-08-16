@@ -6,7 +6,7 @@ using Agate.MVC.Core;
 using Agate.MVC.Base;
 using SpaceInvader.Message;
 
-namespace SpaceInvander.Menu.HighScore
+namespace SpaceInvader.Menu.HighScore
 {
     public class HighScoreDataController : DataController<HighScoreDataController, HighScoreDataModel>
     {
@@ -17,8 +17,11 @@ namespace SpaceInvander.Menu.HighScore
 
         public List<string> OnLoadData()
         {
-            return _model.TopScore;
-            Publish(new HighScoreMessage());
+
+            List<string> keys = new List<string>(_model.dataScore.Keys);
+            List<int> values = new List<int>(_model.dataScore.Values);
+            return keys;
+            //Publish(new HighScoreMessage());
         }
         
     }

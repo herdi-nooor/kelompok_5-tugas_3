@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SpaceInvander.Gameplay.Bullet
+namespace SpaceInvader.Gameplay.Bullet
 {
     public struct MoveBulletMessage
     {

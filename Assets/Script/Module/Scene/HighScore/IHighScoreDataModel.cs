@@ -3,11 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SpaceInvander.Menu.HighScore
+namespace SpaceInvader.Menu.HighScore
 {
     public interface IHighScoreDataModel : IBaseModel
     {
-        public SortedDictionary<string, int> DataScore { get; }
+        public SortedDictionary<string, int> dataScore { get; }
     }
 
 }

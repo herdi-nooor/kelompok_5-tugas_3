@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Agate.MVC.Base;
-using SpaceInvander.Boot;
+using SpaceInvader.Boot;
 using Agate.MVC.Core;
-using SpaceInvander.Gameplay.Bullet;
+using SpaceInvader.Gameplay.Bullet;
 using SpaceInvader.Module.Spaceship;
 using SpaceInvader.Gameplay;
 using SpaceInvader.Module.InputManager;
 
-namespace SpaceInvander.Gameplay
+namespace SpaceInvader.Gameplay
 {
     public class GameplayLauncher : 
         SceneLauncher<GameplayLauncher, GameplayView>

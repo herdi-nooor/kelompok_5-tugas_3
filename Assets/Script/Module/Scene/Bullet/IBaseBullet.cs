@@ -1,7 +1,7 @@
 using Agate.MVC.Base;
 using UnityEngine;
 
-namespace SpaceInvander.Gameplay.Bullet
+namespace SpaceInvader.Gameplay.Bullet
 {
     public interface IBaseBullet :  IBaseModel
     {

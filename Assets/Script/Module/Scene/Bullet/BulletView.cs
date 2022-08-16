@@ -1,11 +1,12 @@
 using Agate.MVC.Base;
+using System;
 /*using SpaceInvander.Gameplay.Bullet;
 using System.Collections;
 using System.Collections.Generic;*/
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace SpaceInvander.Gameplay.Bullet
+namespace SpaceInvader.Gameplay.Bullet
 {
     public class BulletView : ObjectView<IBaseBullet>
     {
@@ -24,6 +25,7 @@ namespace SpaceInvander.Gameplay.Bullet
 
         protected override void InitRenderModel(IBaseBullet model)
         {
+            gameObject.SetActive(true);
             transform.position = _model.position;
         }
         protected override void UpdateRenderModel(IBaseBullet model)
@@ -31,6 +33,10 @@ namespace SpaceInvander.Gameplay.Bullet
             transform.position = _model.position;
         }
 
+        internal void SetCallbacks(object v)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }

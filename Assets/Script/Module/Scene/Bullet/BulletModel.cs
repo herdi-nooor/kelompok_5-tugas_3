@@ -2,7 +2,7 @@ using Agate.MVC.Base;
 using Agate.MVC.Core;
 using UnityEngine;
 
-namespace SpaceInvander.Gameplay.Bullet
+namespace SpaceInvader.Gameplay.Bullet
 {
 
     public class BulletModel : BaseModel, IBaseBullet

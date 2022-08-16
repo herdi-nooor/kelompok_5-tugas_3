@@ -1,10 +1,10 @@
 using Agate.MVC.Base;
-using SpaceInvander.Gameplay.Bullet;
+using SpaceInvader.Gameplay.Bullet;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SpaceInvander.Gameplay.Bullet
+namespace SpaceInvader.Gameplay.Bullet
 {
     public class BulletController : ObjectController<BulletController, 
         BulletModel, IBaseBullet, BulletView>
@@ -26,30 +26,34 @@ namespace SpaceInvander.Gameplay.Bullet
         public override void SetView(BulletView view)
         {
             base.SetView(view);
-            view.SetCallbacks(OnMoveBullet(nameObject, gunPosition));
+            view.SetCallbacks(OnMoveBullet);
         }
 
-        public void OnMoveBullet(string nameObject, Vector2 gunPosition)
+
+        // ngambil posisi dari object penembak dan jenisnya
+        //      OnMoveBullet(Vector2 Gunposition, bool isEnemy)
+        public void OnMoveBullet()
         {
-            if (nameObject == "Spaceship")
-            {
+            //if (nameObject == "Spaceship")
+            //{
+            //                     ini gsnti GunPosition
                 Vector2 position = _model.position + (Vector2.up * Time.deltaTime * 5);
                 _model.SetPosition(position);
-            }
-            else if (nameObject == "Enemy")
-            {
-                Vector2 position = _model.position + (Vector2.up * Time.deltaTime * 5);
-                _model.SetPosition(position);
-            }
+            //}
+            //else if (nameObject == "Enemy")
+            //{
+            //    Vector2 position = _model.position + (Vector2.up * Time.deltaTime * 5);
+            //    _model.SetPosition(position);
+            //}
+            Publish(new MoveBulletMessage());
         }
 
         
 
         //fungsi yang di panggil di connector
-
-        public void OnStartPlay(StartPlayMessage message)
+        /*public void OnStartPlay(StartPlayMessage message)
         {
-        }
+        }*/
     }
 
 }
