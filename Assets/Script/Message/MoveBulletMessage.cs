@@ -11,5 +11,7 @@ namespace SpaceInvader.Gameplay.Bullet
             Direction = direction;
         }
     }
+    // message membawa data 
+    // contoh Direction
 }
 

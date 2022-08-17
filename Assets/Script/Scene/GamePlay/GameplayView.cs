@@ -11,6 +11,7 @@ namespace SpaceInvader.Gameplay
     public class GameplayView : BaseSceneView
     {
         [SerializeField] public BulletView bulletView;
+        [SerializeField] public BulletEnemyView bulletEnemyView;
         [SerializeField] public SpaceshipView SpaceshipView;
         [SerializeField] public InputView InputView;
     }
