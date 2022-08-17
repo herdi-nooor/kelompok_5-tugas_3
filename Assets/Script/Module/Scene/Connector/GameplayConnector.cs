@@ -13,6 +13,7 @@ namespace SpaceInvader.Gameplay
         private SpaceshipController _spaceship;
         // tambah private bullet
         private BulletController _bullet;
+        private BulletEnemyController _bulletEnemy;
         
         public void OnMoveLeft(MoveLeftMessage message)
         {
@@ -32,8 +33,12 @@ namespace SpaceInvader.Gameplay
         //buat fungsi baru
         public void OnMoveBullet(MoveBulletMessage message)
         {
-            // panggil bullet/fungdsi disini
+            // panggil fungsi yang ada di controller objectnya
             _bullet.OnMoveBullet();
+        }
+        public void OnMoveBulletEnemy(MoveBulletEnemyMessage message)
+        {
+            _bulletEnemy.OnMoveBulletEnemy();
         }
 
         public void OnSpaceshipBulletFire(SpaceshipBulletMessage message)
@@ -46,9 +51,12 @@ namespace SpaceInvader.Gameplay
             Subscribe<MoveLeftMessage>(OnMoveLeft);
             Subscribe<MoveRightMessage>(OnMoveRight);
             Subscribe<FireMessage>(OnSpaceshipBullet);
-            //subcribe nama fungsi
+
+            //subcribe nama Message nya ( memanggi fungsinya ),
+            //  menerima message yangn disiarkan dan meneruskan 
             Subscribe<MoveBulletMessage>(OnMoveBullet);
             Subscribe<SpaceshipBulletMessage>(OnSpaceshipBulletFire);
+            Subscribe<MoveBulletEnemyMessage>(OnMoveBulletEnemy);
         }
 
         protected override void Disconnect()
@@ -58,6 +66,7 @@ namespace SpaceInvader.Gameplay
             Unsubscribe<FireMessage>(OnSpaceshipBullet);
             //unsubscribe nama fungsi
             Unsubscribe<MoveBulletMessage>(OnMoveBullet);
+            Unsubscribe<MoveBulletEnemyMessage>(OnMoveBulletEnemy);
         }
     }
 }
