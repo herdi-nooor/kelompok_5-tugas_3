@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Agate.MVC.Base;
-using SpaceInvander.Boot;
+using SpaceInvader.Boot;
 using Agate.MVC.Core;
+using SpaceInvader.Gameplay.Bullet;
 using SpaceInvader.Module.Spaceship;
 using SpaceInvader.Gameplay;
 using SpaceInvader.Module.InputManager;
 
-namespace SpaceInvander.Gameplay
+namespace SpaceInvader.Gameplay
 {
     public class GameplayLauncher : 
         SceneLauncher<GameplayLauncher, GameplayView>
@@ -17,6 +18,7 @@ namespace SpaceInvander.Gameplay
         private InputController _input;
 
         public override string SceneName => "Gameplay";
+        private BulletController _bullet;
         protected override IConnector[] GetSceneConnectors()
         {
             return new IConnector[]{
@@ -28,12 +30,14 @@ namespace SpaceInvander.Gameplay
         {
             return new IController[]{
                 new SpaceshipController(),
-                new InputController()
+                new InputController(),
+                new BulletController()
             };
         }
 
         protected override IEnumerator InitSceneObject()
         {
+            _bullet.SetView(_view.bulletView);
             _spaceship.SetView(_view.SpaceshipView);
             _input.SetView(_view.InputView);
             yield return null;
