@@ -41,6 +41,11 @@ namespace SpaceInvader.Gameplay
             _bulletEnemy.OnMoveBulletEnemy();
         }
 
+        public void OnSpaceshipBulletFire(SpaceshipBulletMessage message)
+        {
+            _bullet.OnSpaceshipBulletFire(message.spaceshipPosition);
+        }
+
         protected override void Connect()
         {
             Subscribe<MoveLeftMessage>(OnMoveLeft);
@@ -50,6 +55,7 @@ namespace SpaceInvader.Gameplay
             //subcribe nama Message nya ( memanggi fungsinya ),
             //  menerima message yangn disiarkan dan meneruskan 
             Subscribe<MoveBulletMessage>(OnMoveBullet);
+            Subscribe<SpaceshipBulletMessage>(OnSpaceshipBulletFire);
             Subscribe<MoveBulletEnemyMessage>(OnMoveBulletEnemy);
         }
 

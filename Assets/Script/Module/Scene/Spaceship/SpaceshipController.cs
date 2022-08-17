@@ -30,7 +30,7 @@ namespace SpaceInvader.Module.Spaceship
         public void OnSpaceshipBullet()
         {
             Debug.Log("BANG!");
-            Publish(new SpaceshipBulletMessage());
+            Publish(new SpaceshipBulletMessage(_model.position));
         }
 
         private void OnCollidedWithEnemyBullet()

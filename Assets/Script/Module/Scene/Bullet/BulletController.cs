@@ -33,12 +33,14 @@ namespace SpaceInvader.Gameplay.Bullet
         }
         public void OnMoveBullet()
         {
-            Vector2 position = _model.position + (Vector2.up * Time.deltaTime * 5);
-            _model.SetPosition(position);
-            
+            //                     ini gsnti GunPosition
+                Vector2 position = _model.position + (Vector2.up * Time.deltaTime * 5);
+                _model.SetPosition(position);
+        }
 
-            //menyiarkan message
-            //Publish(new MoveBulletMessage());
+        public void OnSpaceshipBulletFire(Vector2 positionTemp)
+        {
+            _model.OnSpaceshipBulletFire(positionTemp);
         }
 
     }

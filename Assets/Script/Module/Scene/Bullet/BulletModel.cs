@@ -17,8 +17,11 @@ namespace SpaceInvader.Gameplay.Bullet
             SetDataAsDirty();
 
         }
-        
-        
+        public void OnSpaceshipBulletFire(Vector2 positionTemp)
+        {
+            position = positionTemp;
+            SetDataAsDirty();
+        }
 
         public void SetName(string name)
         {
