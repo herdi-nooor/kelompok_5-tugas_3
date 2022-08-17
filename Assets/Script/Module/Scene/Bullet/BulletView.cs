@@ -1,23 +1,40 @@
 using Agate.MVC.Base;
 using System;
-/*using SpaceInvander.Gameplay.Bullet;
-using System.Collections;
-using System.Collections.Generic;*/
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Pool;
 
 namespace SpaceInvader.Gameplay.Bullet
 {
     public class BulletView : ObjectView<IBaseBullet>
     {
 
+        [SerializeField] private BulletModel _shapePrefab;
         private UnityAction _OnMoveBullet;
+        private ObjectPool<BulletModel> _pool;
 
         public void SetCallbacks(UnityAction OnMoveBullet)
         {
             _OnMoveBullet = OnMoveBullet;
         }
 
+        private void Start()
+        {
+            _pool = new ObjectPool<BulletModel>(() =>
+            {
+                return Instantiate(_shapePrefab);
+            }, shape =>
+            {
+                shape.gameObject.SetActive(true);
+            }, shape =>
+            {
+                shape.gameObject.SetActive(false);
+            }, shape =>
+            {
+                Destroy(shape.gameObject);
+            }, false, 3, 10);
+            InvokeRepeating(nameof(Spawn), 0.2f, 0.2f);
+        }
         private void Update()
         {
             _OnMoveBullet?.Invoke();
@@ -37,6 +54,13 @@ namespace SpaceInvader.Gameplay.Bullet
         {
             throw new NotImplementedException();
         }
+
+        private void Spawn()
+        {
+
+        }
+
+
     }
 
 }

@@ -11,7 +11,6 @@ namespace SpaceInvader.Gameplay.Bullet
     {
 
 
-
         public override IEnumerator Finalize()
         {
             yield return base.Finalize();
@@ -33,7 +32,6 @@ namespace SpaceInvader.Gameplay.Bullet
         }
         public void OnMoveBullet()
         {
-            //                     ini gsnti GunPosition
                 Vector2 position = _model.position + (Vector2.up * Time.deltaTime * 5);
                 _model.SetPosition(position);
         }
@@ -42,6 +40,7 @@ namespace SpaceInvader.Gameplay.Bullet
         {
             _model.OnSpaceshipBulletFire(positionTemp);
         }
+
 
     }
 

@@ -43,6 +43,7 @@ namespace SpaceInvader.Gameplay
 
         public void OnSpaceshipBulletFire(SpaceshipBulletMessage message)
         {
+            // isi parameter dengan data yang ada di message message
             _bullet.OnSpaceshipBulletFire(message.spaceshipPosition);
         }
 

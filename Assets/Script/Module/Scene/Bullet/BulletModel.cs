@@ -28,5 +28,6 @@ namespace SpaceInvader.Gameplay.Bullet
             Name = name;
             SetDataAsDirty();
         }
+
     }
 }
