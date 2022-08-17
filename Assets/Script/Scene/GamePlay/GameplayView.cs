@@ -1,5 +1,6 @@
 using Agate.MVC.Base;
 using SpaceInvader.Gameplay.Bullet;
+using SpaceInvader.Module.Enemy;
 using SpaceInvader.Module.InputManager;
 using SpaceInvader.Module.Spaceship;
 using System.Collections;
@@ -13,6 +14,7 @@ namespace SpaceInvader.Gameplay
         [SerializeField] public BulletView bulletView;
         [SerializeField] public SpaceshipView SpaceshipView;
         [SerializeField] public InputView InputView;
+        [SerializeField] public EnemyView EnemyView;
     }
 
 }
