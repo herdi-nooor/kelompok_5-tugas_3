@@ -61,7 +61,11 @@ namespace SpaceInvader.Gameplay.Bullet
             {
                 DestroyBullet(gameObject);
             }
-            
+            if (collision.gameObject.tag == "Enemy")
+            {
+                DestroyBullet(gameObject);
+            }
+
         }
     }
 

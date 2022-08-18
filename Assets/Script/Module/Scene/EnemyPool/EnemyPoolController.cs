@@ -1,4 +1,5 @@
 using Agate.MVC.Base;
+using SpaceInvader.Message;
 using SpaceInvader.Module.Enemy;
 using System;
 using System.Collections;
@@ -63,6 +64,21 @@ namespace SpaceInvader.Module.EnemyPool
             InjectDependencies(instance);
             instance.Init(instanceModel, instanceView);
             instanceView.SetPosition(new Vector3(j, i, 0));
+        }
+
+        public void OnEnemyDied()
+        {
+            _model.Despawned();
+            if (_model.spawnCount == 0)
+            {
+                _model.OnRespawned();
+                Respawned();
+            }
+        }
+
+        public void Respawned()
+        {
+            Publish(new OnRespawnMessage());
         }
     }
 

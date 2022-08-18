@@ -10,7 +10,7 @@ namespace SpaceInvader.Module.EnemyPool
         public bool isRight = true;
         public Vector3 spawnPosition { get; private set; } = new Vector3(0f, 0f, 0f);
         public Vector3 position { get; private set; } = new Vector3(0f, 0f, 0f);
-        public int spawnCount = 0;
+        public int spawnCount = 15;
 
         public void SetPosition(Vector3 positionTemp)
         {
@@ -29,6 +29,19 @@ namespace SpaceInvader.Module.EnemyPool
                 isRight = true;
             }
             position = new Vector3(position.x, position.y - 0.1f, position.z);
+            SetDataAsDirty();
+        }
+
+        public void Despawned()
+        {
+            spawnCount--;
+            SetDataAsDirty();
+        }
+
+        public void OnRespawned()
+        {
+            position = spawnPosition;
+            SetDataAsDirty();
         }
     }
 }
