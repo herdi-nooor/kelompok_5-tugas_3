@@ -41,12 +41,12 @@ namespace SpaceInvader.Module.EnemyPool
         {
             if (_model.isRight)
             {
-                Vector3 position = _model.position + (Vector3.right * Time.deltaTime);
+                Vector3 position = _model.position + (Vector3.right * Time.deltaTime * _model.speedModifier);
                 _model.SetPosition(position);
             }
             else
             {
-                Vector3 position = _model.position + (Vector3.left * Time.deltaTime);
+                Vector3 position = _model.position + (Vector3.left * Time.deltaTime * _model.speedModifier);
                 _model.SetPosition(position);
             }
         }
@@ -71,6 +71,10 @@ namespace SpaceInvader.Module.EnemyPool
         public void OnEnemyDied()
         {
             _model.Despawned();
+            if ((_model.spawnCount == 10) || (_model.spawnCount == 5))
+            {
+                _model.SpeedUp();
+            }
             if (_model.spawnCount == 0)
             {
                 _model.OnRespawned();
