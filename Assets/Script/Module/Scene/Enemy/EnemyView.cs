@@ -49,6 +49,7 @@ namespace SpaceInvader.Module.Enemy
 
         public void OnTriggerEnter2D(Collider2D collision)
         {
+            Debug.Log(collision);
             if (collision.CompareTag("SpaceshipBullet"))
             {
                 _onCollidedWithSpaceshipBullet?.Invoke();

@@ -54,7 +54,6 @@ namespace SpaceInvader.Gameplay
         {
             // isi parameter dengan data yang ada di message message
             _bullet.OnSpaceshipBulletFire(message.spaceshipPosition);
-            Debug.Log(message.spaceshipPosition);
         }
 
         public void OnScored(AddScoreMessage message)

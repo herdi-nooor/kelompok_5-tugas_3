@@ -36,8 +36,6 @@ namespace SpaceInvader.Gameplay.Bullet
 
         protected override void InitRenderModel(IBaseBullet model)
         {
-            Debug.Log(transform.position);
-            Debug.Log(_model.positionInit);
 
         }
         protected override void UpdateRenderModel(IBaseBullet model)
