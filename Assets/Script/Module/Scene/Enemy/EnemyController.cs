@@ -11,7 +11,7 @@ namespace SpaceInvader.Module.Enemy
         public override void SetView(EnemyView view)
         {
             base.SetView(view);
-            view.SetCallbacks(OnMove, OnActivate, OnCollidedWithSpaceshipBullet);
+            view.SetCallbacks(OnMove, OnActivate, OnCollidedWithSpaceshipBullet, OnEnemyShoot);
         }
 
         public void OnMove()
@@ -41,6 +41,12 @@ namespace SpaceInvader.Module.Enemy
             Debug.Log("Destroyed!");
             Publish(new AddScoreMessage());
             Publish(new EnemyDiedMessage());
+        }
+
+        public void OnEnemyShoot()
+        {
+            Debug.Log("Enemey fire!");
+            Publish(new EnemyBulletMessage());
         }
     }
 
