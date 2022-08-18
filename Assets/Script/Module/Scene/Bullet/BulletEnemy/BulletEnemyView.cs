@@ -9,32 +9,57 @@ namespace SpaceInvader.Gameplay.Bullet
 {
     public class BulletEnemyView : ObjectView<IBaseBullet>
     {
-
-        private UnityAction _OnMoveBulletEnemy;
-
-        public void SetCallbacks(UnityAction OnMoveBulletEnemy)
+        public void OnEdge()
         {
-            _OnMoveBulletEnemy = OnMoveBulletEnemy;
+            float frustrumPositionUp = Camera.main.ViewportToWorldPoint(new Vector2(0, 1)).y;
+            float frustrumPositiondown = Camera.main.ViewportToWorldPoint(new Vector2(0, 0)).y;
+
+            if ((transform.position.y > frustrumPositionUp) || (transform.position.y < frustrumPositiondown))
+            {
+                DestroyBullet(gameObject);
+            }
         }
 
-        /*private void Update()
+        public void SetCallbacks()
         {
-            _OnMoveBulletEnemy?.Invoke();
-        }*/
+        }
+
+        private void Update()
+        {
+            Vector3 position = transform.position + (Vector3.up * Time.deltaTime * 5f);
+            SetPosition(position);
+            OnEdge();
+        }
 
         protected override void InitRenderModel(IBaseBullet model)
         {
-            gameObject.SetActive(true);
-            transform.position = _model.position;
         }
         protected override void UpdateRenderModel(IBaseBullet model)
         {
-            transform.position = _model.position;
         }
 
-        internal void SetCallbacks(object v)
+        public void SetPosition(Vector3 position)
         {
-            throw new NotImplementedException();
+            transform.position = position;
+        }
+
+        private void DestroyBullet(GameObject bullet)
+        {
+            Destroy(bullet);
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            Debug.Log(collision);
+            if (collision.gameObject.name == "DestroyerBullet")
+            {
+                DestroyBullet(gameObject);
+            }
+            if (collision.gameObject.tag == "SpaceShip")
+            {
+                DestroyBullet(gameObject);
+            }
+
         }
     }
 

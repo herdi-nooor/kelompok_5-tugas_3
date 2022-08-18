@@ -44,16 +44,21 @@ namespace SpaceInvader.Gameplay
         {
             // panggil fungsi yang ada di controller objectnya
             _bullet.OnMoveBullet();
-        }*/
+        }*//*
         public void OnMoveBulletEnemy(MoveBulletEnemyMessage message)
         {
             _bulletEnemy.OnMoveBulletEnemy();
-        }
+        }*/
 
         public void OnSpaceshipBulletFire(SpaceshipBulletMessage message)
         {
             // isi parameter dengan data yang ada di message message
             _bullet.OnSpaceshipBulletFire(message.spaceshipPosition);
+        }
+        public void OnEnemyBulletFire(EnemyBulletMessage message)
+        {
+            // isi parameter dengan data yang ada di message message
+            _bulletEnemy.OnEnemyBulletFire(message.EnemyPosition);
         }
 
         public void OnScored(AddScoreMessage message)
@@ -96,7 +101,7 @@ namespace SpaceInvader.Gameplay
             //  menerima message yangn disiarkan dan meneruskan 
             //Subscribe<MoveBulletMessage>(OnMoveBullet);
             Subscribe<SpaceshipBulletMessage>(OnSpaceshipBulletFire);
-            Subscribe<MoveBulletEnemyMessage>(OnMoveBulletEnemy);
+            Subscribe<EnemyBulletMessage>(OnEnemyBulletFire);
             Subscribe<AddScoreMessage>(OnScored);
             Subscribe<GameOverMessage>(OnGameOver);
             Subscribe<LoseLivesMessage>(OnSpaceshipHit);
@@ -112,7 +117,7 @@ namespace SpaceInvader.Gameplay
             Unsubscribe<FireMessage>(OnSpaceshipBullet);
             //unsubscribe nama fungsi
             Unsubscribe<SpaceshipBulletMessage>(OnSpaceshipBulletFire);
-            Unsubscribe<MoveBulletEnemyMessage>(OnMoveBulletEnemy);
+            Unsubscribe<EnemyBulletMessage>(OnEnemyBulletFire);
             Unsubscribe<AddScoreMessage>(OnScored);
             Unsubscribe<GameOverMessage>(OnGameOver);
             Unsubscribe<LoseLivesMessage>(OnSpaceshipHit);

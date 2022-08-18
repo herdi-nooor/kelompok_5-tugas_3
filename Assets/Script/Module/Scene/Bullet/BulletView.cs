@@ -21,12 +21,8 @@ namespace SpaceInvader.Gameplay.Bullet
 
         public void SetCallbacks()
         {
-            
         }
 
-        private void Start()
-        {
-        }
         private void Update()
         {
             Vector3 position = transform.position + (Vector3.up * Time.deltaTime * 5f);
@@ -56,6 +52,9 @@ namespace SpaceInvader.Gameplay.Bullet
         {
             Debug.Log(collision);
             if (collision.gameObject.name == "DestroyerBullet")
+            {
+                DestroyBullet(gameObject);
+            }if (collision.gameObject.tag == "Enemy")
             {
                 DestroyBullet(gameObject);
             }

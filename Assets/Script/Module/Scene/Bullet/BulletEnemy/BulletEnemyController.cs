@@ -17,25 +17,30 @@ namespace SpaceInvader.Gameplay.Bullet
         {
             yield return base.Initialize();
 
-            GameObject bullet = new GameObject("Bullet");
-            BulletEnemyView bulletView = bullet.AddComponent<BulletEnemyView>();
-            SetView(bulletView);
         }
 
         public override void SetView(BulletEnemyView view)
         {
             base.SetView(view);
-            view.SetCallbacks(OnMoveBulletEnemy);
+            view.SetCallbacks();
         }
-
-
-        public void OnMoveBulletEnemy()
+        public void OnEnemyBulletFire(Vector3 positionTemp)
         {
-            //                     ini ganti GunPosition
-            Vector2 position = _model.position + (Vector3.down * Time.deltaTime * 5);
-            _model.SetPosition(position);
+            Spawn(positionTemp);
+            _model.OnEnemyBulletFire(positionTemp);
+        }
+
+        private void Spawn(Vector3 position)
+        {
+            BulletEnemyView bulletPrefab = Resources.Load<BulletEnemyView>(@"Prefabs/BulletEnemy");
+            BulletEnemyView bulletView = GameObject.Instantiate<BulletEnemyView>(bulletPrefab);
+            bulletView.SetPosition(position);
+
+            SetView(bulletView);
+
 
         }
+
 
     }
     

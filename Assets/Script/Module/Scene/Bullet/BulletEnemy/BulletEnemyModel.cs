@@ -19,6 +19,19 @@ namespace SpaceInvader.Gameplay.Bullet
             SetDataAsDirty();
 
         }
+
+        public void SetPositionInit(Vector3 positionTmp)
+        {
+            position = positionTmp;
+            SetDataAsDirty();
+
+        }
+        public void OnEnemyBulletFire(Vector3 positionTemp)
+        {
+            positionInit = positionTemp;
+            SetDataAsDirty();
+        }
+
         public void SetName(string name)
         {
             Name = name;
