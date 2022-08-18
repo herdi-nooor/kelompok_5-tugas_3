@@ -10,6 +10,7 @@ using SpaceInvader.Gameplay;
 using SpaceInvader.Module.InputManager;
 using SpaceInvader.Module.Enemy;
 using SpaceInvader.Module.ScoreHandler;
+using SpaceInvader.Module.LivesHandler;
 
 namespace SpaceInvader.Gameplay
 {
@@ -36,7 +37,8 @@ namespace SpaceInvader.Gameplay
                 new InputController(),
                 new BulletController(),
                 new EnemyController(),
-                new ScoreHandlerController()
+                new ScoreHandlerController(),
+                new LivesHandlerController()
             };
         }
 
