@@ -9,6 +9,7 @@ namespace SpaceInvader.Module.EnemyPool
     public class EnemyPoolView : ObjectView<IEnemyPoolModel>
     {
         private UnityAction _onMove;
+        public Transform spawnArea;
 
         public void SetCallbacks(UnityAction onMove)
         {

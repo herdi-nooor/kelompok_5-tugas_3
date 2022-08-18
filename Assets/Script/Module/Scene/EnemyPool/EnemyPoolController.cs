@@ -14,13 +14,25 @@ namespace SpaceInvader.Module.EnemyPool
         public override IEnumerator Initialize()
         {
             yield return base.Initialize();
-            _EnemyObjectPrefab = Resources.Load<EnemyView>(@"Prefabs/ExampleObject");
+            _EnemyObjectPrefab = Resources.Load<EnemyView>(@"Prefabs/Enemy");
         }
 
         public override void SetView(EnemyPoolView view)
         {
             base.SetView(view);
             view.SetCallbacks(OnMove);
+            InitPoolObject();
+        }
+
+        public void InitPoolObject()
+        {
+            for (int i = 1; i < 4; i++)
+            {
+                for (int j = -2; j < 3; j++)
+                {
+                    CreateEnemyObject(i, j);
+                }
+            }
         }
 
         public void OnMove()
@@ -42,14 +54,15 @@ namespace SpaceInvader.Module.EnemyPool
             _model.OnEdge();
         }
 
-        public void CreateEnemyObject()
+        public void CreateEnemyObject(int i, int j)
         {
             EnemyModel instanceModel = new EnemyModel();
-            EnemyView instanceObject = GameObject.Instantiate(_EnemyObjectPrefab);
+            EnemyView instanceObject = GameObject.Instantiate(_EnemyObjectPrefab, _view.spawnArea);
             EnemyView instanceView = instanceObject.GetComponent<EnemyView>();
             EnemyController instance = new EnemyController();
             InjectDependencies(instance);
             instance.Init(instanceModel, instanceView);
+            instanceView.SetPosition(new Vector3(j, i, 0));
         }
     }
 

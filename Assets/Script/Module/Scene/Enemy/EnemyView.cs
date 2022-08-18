@@ -65,6 +65,11 @@ namespace SpaceInvader.Module.Enemy
                 _onEdge?.Invoke();
             }
         }
+
+        public void SetPosition(Vector3 position)
+        {
+            transform.position = position;
+        }
     }
 
 }
