@@ -1,11 +1,11 @@
 using Agate.MVC.Base;
 using Agate.MVC.Core;
-using SpaceInvander.Boot;
+using SpaceInvader.Boot;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SpaceInvander.Menu
+namespace SpaceInvader.Menu
 {
     public class MenuLauncher : SceneLauncher<MenuLauncher, MenuView>
     {
