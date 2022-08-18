@@ -16,6 +16,11 @@ namespace SpaceInvader.Module.ScoreHandler
             Publish(new UpdateScoreMessage(_model.Score));
             Debug.Log("Scored " + _model.Score.ToString());
         }
+
+        public void OnGameOver()
+        {
+            Publish(new SaveHighscoreMessage(_model.Score));
+        }
     }
 
 }

@@ -58,6 +58,11 @@ namespace SpaceInvader.Gameplay
             _scoreHandler.OnEnemyDestroyed();
         }
 
+        public void OnGameOver(GameOverMessage message)
+        {
+            _scoreHandler.OnGameOver();
+        }
+
         public void OnSpaceshipHit(LoseLivesMessage message)
         {
             _livesHandler.OnSpaceshipHit();
@@ -85,6 +90,7 @@ namespace SpaceInvader.Gameplay
             Subscribe<SpaceshipBulletMessage>(OnSpaceshipBulletFire);
             Subscribe<MoveBulletEnemyMessage>(OnMoveBulletEnemy);
             Subscribe<AddScoreMessage>(OnScored);
+            Subscribe<GameOverMessage>(OnGameOver);
             Subscribe<LoseLivesMessage>(OnSpaceshipHit);
             Subscribe<UpdateScoreMessage>(OnScoreUpdate);
             Subscribe<UpdateLivesMessage>(OnLivesUpdate);
@@ -100,6 +106,7 @@ namespace SpaceInvader.Gameplay
             Unsubscribe<SpaceshipBulletMessage>(OnSpaceshipBulletFire);
             Unsubscribe<MoveBulletEnemyMessage>(OnMoveBulletEnemy);
             Unsubscribe<AddScoreMessage>(OnScored);
+            Unsubscribe<GameOverMessage>(OnGameOver);
             Unsubscribe<LoseLivesMessage>(OnSpaceshipHit);
             Unsubscribe<UpdateScoreMessage>(OnScoreUpdate);
             Unsubscribe<UpdateLivesMessage>(OnLivesUpdate);
