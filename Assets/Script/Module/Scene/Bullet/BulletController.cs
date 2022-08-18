@@ -11,7 +11,6 @@ namespace SpaceInvader.Gameplay.Bullet
     {
 
 
-
         public override IEnumerator Finalize()
         {
             yield return base.Finalize();
@@ -21,26 +20,30 @@ namespace SpaceInvader.Gameplay.Bullet
         {
             yield return base.Initialize();
 
-            GameObject bullet = new GameObject("Bullet");
-            BulletView bulletView = bullet.AddComponent<BulletView>();
-            SetView(bulletView);
         }
 
         public override void SetView(BulletView view)
         {
             base.SetView(view);
-            view.SetCallbacks(OnMoveBullet);
-        }
-        public void OnMoveBullet()
-        {
-            //                     ini gsnti GunPosition
-                Vector2 position = _model.position + (Vector2.up * Time.deltaTime * 5);
-                _model.SetPosition(position);
+            view.SetCallbacks();
         }
 
-        public void OnSpaceshipBulletFire(Vector2 positionTemp)
+        public void OnSpaceshipBulletFire(Vector3 positionTemp)
         {
+            Spawn(positionTemp);
             _model.OnSpaceshipBulletFire(positionTemp);
+        }
+
+
+        private void Spawn(Vector3 position)
+        {
+            BulletView bulletPrefab = Resources.Load<BulletView>(@"Prefabs/Bullet");
+            BulletView bulletView = GameObject.Instantiate<BulletView>(bulletPrefab);
+            bulletView.SetPosition(position);
+
+            SetView(bulletView);
+
+            
         }
 
     }

@@ -5,10 +5,10 @@ namespace SpaceInvader.Gameplay.Bullet
 {
     public interface IBaseBullet :  IBaseModel
     {
-        public Vector2 position { get; }
+        public Vector3 position { get; }
 
         public string Name { get; }
-
+        public Vector3 positionInit { get; set; }
     }
 
 }

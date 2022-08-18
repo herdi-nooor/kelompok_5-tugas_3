@@ -30,6 +30,7 @@ namespace SpaceInvader.Module.Spaceship
         public void OnSpaceshipBullet()
         {
             Debug.Log("BANG!");
+            // masukan data yng akan dikirim dalam message
             Publish(new SpaceshipBulletMessage(_model.position));
         }
 
