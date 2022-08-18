@@ -41,12 +41,18 @@ namespace SpaceInvader.Module.Enemy
             Debug.Log("Destroyed!");
             Publish(new AddScoreMessage());
             Publish(new EnemyDiedMessage());
+            _view.gameObject.SetActive(false);
         }
 
         public void OnEnemyShoot()
         {
             Debug.Log("Enemey fire!");
             Publish(new EnemyBulletMessage());
+        }
+
+        public void OnRespawn()
+        {
+            _view.gameObject.SetActive(true);
         }
     }
 

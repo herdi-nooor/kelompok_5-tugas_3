@@ -11,6 +11,7 @@ using SpaceInvader.Module.InputManager;
 using SpaceInvader.Module.Enemy;
 using SpaceInvader.Module.ScoreHandler;
 using SpaceInvader.Module.LivesHandler;
+using SpaceInvader.Module.UI;
 
 namespace SpaceInvader.Gameplay
 {
@@ -20,6 +21,7 @@ namespace SpaceInvader.Gameplay
         private SpaceshipController _spaceship;
         private InputController _input;
         private EnemyController _enemy;
+        private UIController _uI;
 
         public override string SceneName => "Gameplay";
         private BulletController _bullet;
@@ -38,7 +40,8 @@ namespace SpaceInvader.Gameplay
                 new BulletController(),
                 new EnemyController(),
                 new ScoreHandlerController(),
-                new LivesHandlerController()
+                new LivesHandlerController(),
+                new UIController()
             };
         }
 
@@ -48,6 +51,7 @@ namespace SpaceInvader.Gameplay
             _spaceship.SetView(_view.SpaceshipView);
             _input.SetView(_view.InputView);
             _enemy.SetView(_view.EnemyView);
+            _uI.SetView(_view.UIView);
             yield return null;
         }
 
