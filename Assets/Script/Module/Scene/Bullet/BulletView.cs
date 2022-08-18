@@ -8,12 +8,20 @@ namespace SpaceInvader.Gameplay.Bullet
     public class BulletView : ObjectView<IBaseBullet>
     {
 
-        [SerializeField] private BulletModel _shapePrefab;
-        private UnityAction _OnMoveBullet;
-
-        public void SetCallbacks(UnityAction OnMoveBullet)
+        public void OnEdge()
         {
-            _OnMoveBullet = OnMoveBullet;
+            float frustrumPositionUp = Camera.main.ViewportToWorldPoint(new Vector2(0, 1)).y;
+            float frustrumPositiondown = Camera.main.ViewportToWorldPoint(new Vector2(0 , 0)).y;
+
+            if ((transform.position.y > frustrumPositionUp) || (transform.position.y < frustrumPositiondown))
+            {
+                DestroyBullet(gameObject);
+            }
+        }
+
+        public void SetCallbacks()
+        {
+            
         }
 
         private void Start()
@@ -21,29 +29,40 @@ namespace SpaceInvader.Gameplay.Bullet
         }
         private void Update()
         {
-            _OnMoveBullet?.Invoke();
+            Vector3 position = transform.position + (Vector3.up * Time.deltaTime * 5f);
+            SetPosition(position);
+            OnEdge();
         }
 
         protected override void InitRenderModel(IBaseBullet model)
         {
-            transform.position = _model.position;
+            Debug.Log(transform.position);
+            Debug.Log(_model.positionInit);
+
         }
         protected override void UpdateRenderModel(IBaseBullet model)
         {
-            transform.position = _model.position;
         }
 
-        internal void SetCallbacks(object v)
+        public void SetPosition(Vector3 position)
         {
-            throw new NotImplementedException();
+            transform.position = position;
         }
 
-        private void Spawn()
+        private void DestroyBullet(GameObject bullet)
         {
-
+            Destroy(bullet);
         }
 
-
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            Debug.Log(collision);
+            if (collision.gameObject.name == "DestroyerBullet")
+            {
+                DestroyBullet(gameObject);
+            }
+            
+        }
     }
 
 }

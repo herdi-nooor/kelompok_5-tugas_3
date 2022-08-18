@@ -6,9 +6,9 @@ namespace SpaceInvader.Message
 {
     public struct SpaceshipBulletMessage
     {
-        public Vector2 spaceshipPosition { get; private set; }
+        public Vector3 spaceshipPosition { get; private set; }
 
-        public SpaceshipBulletMessage(Vector2 Position)
+        public SpaceshipBulletMessage(Vector3 Position)
         {
             spaceshipPosition = Position;
         }
