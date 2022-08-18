@@ -13,6 +13,8 @@ namespace SpaceInvader.Module.EnemyPool
         public Vector3 position { get; private set; } = new Vector3(0f, 0f, 0f);
         public List<GameObject> EnemyPool = new List<GameObject>();
         public int spawnCount = 0;
+        public float speedModifier { get; private set; } = 1;
+        public float speedModifierReset { get; private set; } = 1;
 
         public void SetPosition(Vector3 positionTemp)
         {
@@ -44,6 +46,7 @@ namespace SpaceInvader.Module.EnemyPool
         {
             position = spawnPosition;
             spawnCount = 15;
+            speedModifier = speedModifierReset;
             SetDataAsDirty();
         }
 
@@ -53,6 +56,11 @@ namespace SpaceInvader.Module.EnemyPool
             spawnCount++;
             Debug.Log(spawnCount);
             SetDataAsDirty();
+        }
+
+        public void SpeedUp()
+        {
+            speedModifier += speedModifierReset;
         }
     }
 }
