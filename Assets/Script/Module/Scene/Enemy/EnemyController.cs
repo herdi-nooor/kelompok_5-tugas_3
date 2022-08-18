@@ -1,4 +1,5 @@
 using Agate.MVC.Base;
+using SpaceInvader.Message;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +11,7 @@ namespace SpaceInvader.Module.Enemy
         public override void SetView(EnemyView view)
         {
             base.SetView(view);
-            view.SetCallbacks(OnMove);
+            view.SetCallbacks(OnMove, OnActivate, OnCollidedWithSpaceshipBullet);
         }
 
         public void OnMove()
@@ -26,6 +27,20 @@ namespace SpaceInvader.Module.Enemy
                 _model.SetPosition(position);
             }    
 
+        }
+
+        public void OnActivate()
+        {
+            Debug.Log("Spawn!");
+            Vector3 spawnPosition = _view.transform.position;
+            _model.SetSpawnPosition(spawnPosition);
+        }
+
+        public void OnCollidedWithSpaceshipBullet()
+        {
+            Debug.Log("Destroyed!");
+            Publish(new AddScoreMessage());
+            Publish(new EnemyDiedMessage());
         }
     }
 

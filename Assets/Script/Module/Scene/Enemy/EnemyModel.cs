@@ -9,25 +9,27 @@ namespace SpaceInvader.Module.Enemy
     {
         private float clampBorderOffset = 0.5f;
         public bool isRight = true;
-        public Vector3 position { get; private set; }
+        public Vector3 spawnPosition { get; private set; }
+        public Vector3 position { get; private set; } = new Vector3(0f, 3f, 0f);
 
         public void SetPosition(Vector3 positionTemp)
         {
             position = positionTemp;
             float frustrumPositionRightX = Camera.main.ViewportToWorldPoint(new Vector2(1, 0)).x;
-            // Clamp right
-            if (position.x > frustrumPositionRightX - clampBorderOffset)
-            {
-               isRight = false;
-                position = new Vector3(position.x, position.y - 0.1f, position.z);
-            }
             float frustrumPositionLeftX = Camera.main.ViewportToWorldPoint(new Vector2(0, 0)).x;
-            // Clamp left
-            if (position.x < frustrumPositionLeftX + clampBorderOffset)
+            // Clamp left and right
+            if ((position.x > frustrumPositionRightX - clampBorderOffset) || (position.x < frustrumPositionLeftX + clampBorderOffset))
             {
-                isRight = true;
+                isRight = !isRight;
                 position = new Vector3(position.x, position.y - 0.1f, position.z);
             }
+            SetDataAsDirty();
+        }
+
+        public void SetSpawnPosition(Vector3 positionTemp)
+        {
+            spawnPosition = positionTemp;
+            position = spawnPosition;
             SetDataAsDirty();
         }
     }
