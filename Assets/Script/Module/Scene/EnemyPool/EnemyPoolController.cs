@@ -10,12 +10,12 @@ namespace SpaceInvader.Module.EnemyPool
 {
     public class EnemyPoolController : ObjectController<EnemyPoolController, EnemyPoolModel, IEnemyPoolModel, EnemyPoolView>
     {
-        [SerializeField] private EnemyView _EnemyObjectPrefab; 
+        [SerializeField] private GameObject _EnemyObjectPrefab; 
         
         public override IEnumerator Initialize()
         {
             yield return base.Initialize();
-            _EnemyObjectPrefab = Resources.Load<EnemyView>(@"Prefabs/Enemy");
+            _EnemyObjectPrefab = Resources.Load<GameObject>(@"Prefabs/Enemy");
         }
 
         public override void SetView(EnemyPoolView view)
@@ -32,6 +32,7 @@ namespace SpaceInvader.Module.EnemyPool
                 for (int j = -2; j < 3; j++)
                 {
                     CreateEnemyObject(i, j);
+                    Debug.Log(i + j);
                 }
             }
         }
@@ -58,12 +59,13 @@ namespace SpaceInvader.Module.EnemyPool
         public void CreateEnemyObject(int i, int j)
         {
             EnemyModel instanceModel = new EnemyModel();
-            EnemyView instanceObject = GameObject.Instantiate(_EnemyObjectPrefab, _view.spawnArea);
+            GameObject instanceObject = GameObject.Instantiate(_EnemyObjectPrefab, _view.transform);
             EnemyView instanceView = instanceObject.GetComponent<EnemyView>();
             EnemyController instance = new EnemyController();
             InjectDependencies(instance);
             instance.Init(instanceModel, instanceView);
             instanceView.SetPosition(new Vector3(j, i, 0));
+            _model.EnqueueEnemy(instanceObject);
         }
 
         public void OnEnemyDied()
@@ -72,13 +74,16 @@ namespace SpaceInvader.Module.EnemyPool
             if (_model.spawnCount == 0)
             {
                 _model.OnRespawned();
-                Respawned();
+                Respawned();                
             }
         }
 
         public void Respawned()
         {
-            Publish(new OnRespawnMessage());
+            for (int i = 0; i < _model.spawnCount; i++)
+            {
+                _model.EnemyPool[i].SetActive(true);
+            }
         }
     }
 

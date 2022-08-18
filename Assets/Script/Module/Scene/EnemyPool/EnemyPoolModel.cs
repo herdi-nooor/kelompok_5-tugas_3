@@ -1,4 +1,5 @@
 using Agate.MVC.Base;
+using SpaceInvader.Module.Enemy;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +11,8 @@ namespace SpaceInvader.Module.EnemyPool
         public bool isRight = true;
         public Vector3 spawnPosition { get; private set; } = new Vector3(0f, 0f, 0f);
         public Vector3 position { get; private set; } = new Vector3(0f, 0f, 0f);
-        public int spawnCount = 15;
+        public List<GameObject> EnemyPool = new List<GameObject>();
+        public int spawnCount = 0;
 
         public void SetPosition(Vector3 positionTemp)
         {
@@ -41,6 +43,15 @@ namespace SpaceInvader.Module.EnemyPool
         public void OnRespawned()
         {
             position = spawnPosition;
+            spawnCount = 15;
+            SetDataAsDirty();
+        }
+
+        public void EnqueueEnemy(GameObject enemy)
+        {
+            EnemyPool.Add(enemy);
+            spawnCount++;
+            Debug.Log(spawnCount);
             SetDataAsDirty();
         }
     }
