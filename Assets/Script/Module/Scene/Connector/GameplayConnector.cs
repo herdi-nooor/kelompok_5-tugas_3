@@ -5,6 +5,7 @@ using SpaceInvader.Gameplay.Bullet;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SpaceInvader.Module.ScoreHandler;
 
 namespace SpaceInvader.Gameplay
 {
@@ -14,6 +15,8 @@ namespace SpaceInvader.Gameplay
         // tambah private bullet
         private BulletController _bullet;
         private BulletEnemyController _bulletEnemy;
+        private ScoreHandlerController _scoreHandler;
+//        private UIController _uIController;
         
         public void OnMoveLeft(MoveLeftMessage message)
         {
@@ -46,6 +49,11 @@ namespace SpaceInvader.Gameplay
             _bullet.OnSpaceshipBulletFire(message.spaceshipPosition);
         }
 
+        public void OnScored(EnemyDiedMessage message)
+        {
+            _scoreHandler.OnEnemyDestroyed();
+        }
+
         protected override void Connect()
         {
             Subscribe<MoveLeftMessage>(OnMoveLeft);
@@ -57,6 +65,7 @@ namespace SpaceInvader.Gameplay
             Subscribe<MoveBulletMessage>(OnMoveBullet);
             Subscribe<SpaceshipBulletMessage>(OnSpaceshipBulletFire);
             Subscribe<MoveBulletEnemyMessage>(OnMoveBulletEnemy);
+            Subscribe<EnemyDiedMessage>(OnScored);
         }
 
         protected override void Disconnect()
@@ -66,7 +75,9 @@ namespace SpaceInvader.Gameplay
             Unsubscribe<FireMessage>(OnSpaceshipBullet);
             //unsubscribe nama fungsi
             Unsubscribe<MoveBulletMessage>(OnMoveBullet);
+            Unsubscribe<SpaceshipBulletMessage>(OnSpaceshipBulletFire);
             Unsubscribe<MoveBulletEnemyMessage>(OnMoveBulletEnemy);
+            Unsubscribe<EnemyDiedMessage>(OnScored);
         }
     }
 }
