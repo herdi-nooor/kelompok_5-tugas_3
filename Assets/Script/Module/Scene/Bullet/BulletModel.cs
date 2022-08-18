@@ -1,5 +1,7 @@
 using Agate.MVC.Base;
 using Agate.MVC.Core;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace SpaceInvader.Gameplay.Bullet
@@ -9,17 +11,24 @@ namespace SpaceInvader.Gameplay.Bullet
     {
         public string Name { get; private set; }
 
-        public Vector2 position { get; private set; } = new Vector2(0, 0);
+        public Vector3 position { get; private set; } = new Vector3(0, 0, 0);
+        public Vector3 positionInit { get; set; } = new Vector3(0, 0, 0);
         
-        public void SetPosition(Vector2 positionTmp)
+        public void SetPosition(Vector3 positionTmp)
         {
             position = positionTmp;
             SetDataAsDirty();
 
         }
-        public void OnSpaceshipBulletFire(Vector2 positionTemp)
+        public void SetPositionInit(Vector3 positionTmp)
         {
-            position = positionTemp;
+            position = positionTmp;
+            SetDataAsDirty();
+
+        }
+        public void OnSpaceshipBulletFire(Vector3 positionTemp)
+        {
+            positionInit = positionTemp;
             SetDataAsDirty();
         }
 
@@ -28,5 +37,6 @@ namespace SpaceInvader.Gameplay.Bullet
             Name = name;
             SetDataAsDirty();
         }
+
     }
 }

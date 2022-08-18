@@ -29,15 +29,12 @@ namespace SpaceInvader.Gameplay.Bullet
         }
 
 
-        // ngambil posisi dari object penembak
-        //  OnMoveBullet(Vector2 Gunposition)
         public void OnMoveBulletEnemy()
         {
             //                     ini ganti GunPosition
-            Vector2 position = _model.position + (Vector2.down * Time.deltaTime * 5);
+            Vector2 position = _model.position + (Vector3.down * Time.deltaTime * 5);
             _model.SetPosition(position);
 
-            //Publish(new MoveBulletEnemyMessage());
         }
 
     }
