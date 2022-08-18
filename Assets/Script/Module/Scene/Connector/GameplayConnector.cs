@@ -8,6 +8,7 @@ using UnityEngine;
 using SpaceInvader.Module.ScoreHandler;
 using SpaceInvader.Module.LivesHandler;
 using SpaceInvader.Module.UI;
+using SpaceInvader.Module.EnemyPool;
 
 namespace SpaceInvader.Gameplay
 {
@@ -20,6 +21,7 @@ namespace SpaceInvader.Gameplay
         private ScoreHandlerController _scoreHandler;
         private LivesHandlerController _livesHandler;
         private UIController _uI;
+        private EnemyPoolController _enemyPool;
 //        private UIController _uIController;
         
         public void OnMoveLeft(MoveLeftMessage message)
@@ -78,6 +80,11 @@ namespace SpaceInvader.Gameplay
             _uI.OnLivesUpdate(message.Lives);
         }
 
+        public void OnEdge(OnEdgeMessage message)
+        {
+            _enemyPool.OnEdge();
+        }
+
         protected override void Connect()
         {
             Subscribe<MoveLeftMessage>(OnMoveLeft);
@@ -94,6 +101,7 @@ namespace SpaceInvader.Gameplay
             Subscribe<LoseLivesMessage>(OnSpaceshipHit);
             Subscribe<UpdateScoreMessage>(OnScoreUpdate);
             Subscribe<UpdateLivesMessage>(OnLivesUpdate);
+            Subscribe<OnEdgeMessage>(OnEdge);
         }
 
         protected override void Disconnect()
@@ -110,6 +118,7 @@ namespace SpaceInvader.Gameplay
             Unsubscribe<LoseLivesMessage>(OnSpaceshipHit);
             Unsubscribe<UpdateScoreMessage>(OnScoreUpdate);
             Unsubscribe<UpdateLivesMessage>(OnLivesUpdate);
+            Unsubscribe<OnEdgeMessage>(OnEdge);
         }
     }
 }
