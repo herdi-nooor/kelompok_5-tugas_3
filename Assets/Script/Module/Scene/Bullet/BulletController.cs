@@ -19,6 +19,7 @@ namespace SpaceInvader.Gameplay.Bullet
         public override IEnumerator Initialize()
         {
             yield return base.Initialize();
+            _model.CreateAudioObject();
 
         }
 
@@ -32,6 +33,7 @@ namespace SpaceInvader.Gameplay.Bullet
         {
             Spawn(positionTemp);
             _model.OnSpaceshipBulletFire(positionTemp);
+            _model.sfx.Play();
         }
 
 
