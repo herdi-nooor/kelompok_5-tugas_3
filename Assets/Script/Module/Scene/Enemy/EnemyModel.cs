@@ -9,7 +9,7 @@ namespace SpaceInvader.Module.Enemy
     {
         private float clampBorderOffset = 0.5f;
         public bool isRight = true;
-        public Vector3 spawnPosition { get; private set; }
+        public Vector3 spawnPosition { get; private set; } = new Vector3(0f, 3f, 0f);
         public Vector3 position { get; private set; } = new Vector3(0f, 3f, 0f);
 
         public void SetPosition(Vector3 positionTemp)

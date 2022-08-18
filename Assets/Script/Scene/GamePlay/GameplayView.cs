@@ -3,6 +3,7 @@ using SpaceInvader.Gameplay.Bullet;
 using SpaceInvader.Module.Enemy;
 using SpaceInvader.Module.InputManager;
 using SpaceInvader.Module.Spaceship;
+using SpaceInvader.Module.UI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,7 @@ namespace SpaceInvader.Gameplay
         [SerializeField] public SpaceshipView SpaceshipView;
         [SerializeField] public InputView InputView;
         [SerializeField] public EnemyView EnemyView;
+        [SerializeField] public UIView UIView;
     }
 
 }

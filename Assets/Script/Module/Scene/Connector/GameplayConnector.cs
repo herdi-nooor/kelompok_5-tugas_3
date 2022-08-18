@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using SpaceInvader.Module.ScoreHandler;
 using SpaceInvader.Module.LivesHandler;
+using SpaceInvader.Module.UI;
 
 namespace SpaceInvader.Gameplay
 {
@@ -18,6 +19,7 @@ namespace SpaceInvader.Gameplay
         private BulletEnemyController _bulletEnemy;
         private ScoreHandlerController _scoreHandler;
         private LivesHandlerController _livesHandler;
+        private UIController _uI;
 //        private UIController _uIController;
         
         public void OnMoveLeft(MoveLeftMessage message)
@@ -61,6 +63,16 @@ namespace SpaceInvader.Gameplay
             _livesHandler.OnSpaceshipHit();
         }
 
+        public void OnScoreUpdate(UpdateScoreMessage message)
+        {
+            _uI.OnScoreUpdate(message.Score);
+        }
+
+        public void OnLivesUpdate(UpdateLivesMessage message)
+        {
+            _uI.OnLivesUpdate(message.Lives);
+        }
+
         protected override void Connect()
         {
             Subscribe<MoveLeftMessage>(OnMoveLeft);
@@ -74,6 +86,8 @@ namespace SpaceInvader.Gameplay
             Subscribe<MoveBulletEnemyMessage>(OnMoveBulletEnemy);
             Subscribe<AddScoreMessage>(OnScored);
             Subscribe<LoseLivesMessage>(OnSpaceshipHit);
+            Subscribe<UpdateScoreMessage>(OnScoreUpdate);
+            Subscribe<UpdateLivesMessage>(OnLivesUpdate);
         }
 
         protected override void Disconnect()
@@ -87,6 +101,8 @@ namespace SpaceInvader.Gameplay
             Unsubscribe<MoveBulletEnemyMessage>(OnMoveBulletEnemy);
             Unsubscribe<AddScoreMessage>(OnScored);
             Unsubscribe<LoseLivesMessage>(OnSpaceshipHit);
+            Unsubscribe<UpdateScoreMessage>(OnScoreUpdate);
+            Unsubscribe<UpdateLivesMessage>(OnLivesUpdate);
         }
     }
 }
