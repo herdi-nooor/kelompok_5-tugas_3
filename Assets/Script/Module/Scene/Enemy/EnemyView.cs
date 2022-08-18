@@ -11,14 +11,16 @@ namespace SpaceInvader.Module.Enemy
         private UnityAction _onCollidedWithSpaceshipBullet;
         private UnityAction _onEnemyShoot;
         private UnityAction _onEdge;
+        private UnityAction _onMove;
         private float timer = 0;
         private float clampBorderOffset = 0.5f;
 
-        public void SetCallbacks(UnityAction onCollidedWithSpaceshipBullet, UnityAction onEnemyShoot, UnityAction OnEdge)
+        public void SetCallbacks(UnityAction onCollidedWithSpaceshipBullet, UnityAction onEnemyShoot, UnityAction OnEdge, UnityAction OnMove)
         {
             _onCollidedWithSpaceshipBullet = onCollidedWithSpaceshipBullet;
             _onEnemyShoot = onEnemyShoot;
             _onEdge = OnEdge;
+            _onMove = OnMove;
         }
 
         protected override void InitRenderModel(IEnemyModel model)
@@ -35,6 +37,7 @@ namespace SpaceInvader.Module.Enemy
         {
             timer += Time.deltaTime;
             OnEdge();
+            _onMove?.Invoke();
             if (timer >= 1.5f)
             {
                 _onEnemyShoot?.Invoke();

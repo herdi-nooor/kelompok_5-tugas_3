@@ -11,6 +11,12 @@ namespace SpaceInvader.Module.Enemy
         public Vector3 spawnPosition { get; private set; }
         public Vector3 position { get; private set; }
 
+        public void SetPosition(Vector3 Position)
+        {
+            position = Position;
+            SetDataAsDirty();
+        }
+
         public EnemyModel()
         {
 
