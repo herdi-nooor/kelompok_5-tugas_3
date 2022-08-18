@@ -9,6 +9,7 @@ using SpaceInvader.Module.ScoreHandler;
 using SpaceInvader.Module.LivesHandler;
 using SpaceInvader.Module.UI;
 using SpaceInvader.Module.EnemyPool;
+using SpaceInvader.Module.Enemy;
 
 namespace SpaceInvader.Gameplay
 {
@@ -22,6 +23,7 @@ namespace SpaceInvader.Gameplay
         private LivesHandlerController _livesHandler;
         private UIController _uI;
         private EnemyPoolController _enemyPool;
+        private EnemyController _enemy;
 //        private UIController _uIController;
         
         public void OnMoveLeft(MoveLeftMessage message)
@@ -86,6 +88,16 @@ namespace SpaceInvader.Gameplay
             _enemyPool.OnEdge();
         }
 
+        public void OnRespawn(OnRespawnMessage message)
+        {
+            _enemy.OnRespawn();
+        }
+
+        public void OnEnemyDied(EnemyDiedMessage message)
+        {
+            _enemyPool.OnEnemyDied();
+        }
+
         protected override void Connect()
         {
             Subscribe<MoveLeftMessage>(OnMoveLeft);
@@ -103,6 +115,8 @@ namespace SpaceInvader.Gameplay
             Subscribe<UpdateScoreMessage>(OnScoreUpdate);
             Subscribe<UpdateLivesMessage>(OnLivesUpdate);
             Subscribe<OnEdgeMessage>(OnEdge);
+            Subscribe<OnRespawnMessage>(OnRespawn);
+            Subscribe<EnemyDiedMessage>(OnEnemyDied);
         }
 
         protected override void Disconnect()
@@ -119,6 +133,8 @@ namespace SpaceInvader.Gameplay
             Unsubscribe<UpdateScoreMessage>(OnScoreUpdate);
             Unsubscribe<UpdateLivesMessage>(OnLivesUpdate);
             Unsubscribe<OnEdgeMessage>(OnEdge);
+            Unsubscribe<OnRespawnMessage>(OnRespawn);
+            Unsubscribe<EnemyDiedMessage>(OnEnemyDied);
         }
     }
 }
