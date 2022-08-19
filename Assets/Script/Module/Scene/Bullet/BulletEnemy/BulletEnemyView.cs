@@ -51,10 +51,6 @@ namespace SpaceInvader.Gameplay.Bullet
         private void OnTriggerEnter2D(Collider2D collision)
         {
             Debug.Log(collision);
-            if (collision.gameObject.name == "DestroyerBullet")
-            {
-                DestroyBullet(gameObject);
-            }
             if (collision.gameObject.tag == "SpaceShip")
             {
                 DestroyBullet(gameObject);
