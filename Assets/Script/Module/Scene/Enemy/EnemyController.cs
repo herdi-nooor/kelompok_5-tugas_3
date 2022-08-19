@@ -11,37 +11,15 @@ namespace SpaceInvader.Module.Enemy
         public override void SetView(EnemyView view)
         {
             base.SetView(view);
-            view.SetCallbacks(OnMove, OnActivate, OnCollidedWithSpaceshipBullet, OnEnemyShoot, OnEdge);
-        }
-
-        public void OnMove()
-        {
-            //if (_model.isRight)
-            //{
-            //    Vector3 position = _model.position + (Vector3.right * Time.deltaTime);
-            //    _model.SetPosition(position);
-            //}
-            //else
-            //{
-            //    Vector3 position = _model.position + (Vector3.left * Time.deltaTime);
-            //    _model.SetPosition(position);
-            //}    
-
-        }
-
-        public void OnActivate()
-        {
-            Debug.Log("Spawn!");
-            Vector3 spawnPosition = _view.transform.position;
-            _model.SetSpawnPosition(spawnPosition);
+            view.SetCallbacks(OnCollidedWithSpaceshipBullet, OnEnemyShoot, OnEdge, OnMove);
         }
 
         public void OnCollidedWithSpaceshipBullet()
         {
             Debug.Log("Destroyed!");
+            _view.gameObject.SetActive(false);
             Publish(new AddScoreMessage());
             Publish(new EnemyDiedMessage());
-            _view.gameObject.SetActive(false);
         }
 
         public void OnEnemyShoot()
@@ -58,6 +36,11 @@ namespace SpaceInvader.Module.Enemy
         public void OnEdge()
         {
             Publish(new OnEdgeMessage());
+        }
+
+        public void OnMove()
+        {
+            _model.SetPosition(_view.transform.position);
         }
 
         public void Init(EnemyModel model, EnemyView view)

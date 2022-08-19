@@ -8,38 +8,36 @@ namespace SpaceInvader.Module.Enemy
 {
     public class EnemyView : ObjectView<IEnemyModel>
     {
-        private UnityAction _onMove;
-        private UnityAction _onActivate;
         private UnityAction _onCollidedWithSpaceshipBullet;
         private UnityAction _onEnemyShoot;
         private UnityAction _onEdge;
+        private UnityAction _onMove;
         private float timer = 0;
         private float clampBorderOffset = 0.5f;
 
-        public void SetCallbacks(UnityAction onMove, UnityAction onActivate, UnityAction onCollidedWithSpaceshipBullet, UnityAction onEnemyShoot, UnityAction OnEdge)
+        public void SetCallbacks(UnityAction onCollidedWithSpaceshipBullet, UnityAction onEnemyShoot, UnityAction OnEdge, UnityAction OnMove)
         {
-            _onMove = onMove;
-            _onActivate = onActivate;
             _onCollidedWithSpaceshipBullet = onCollidedWithSpaceshipBullet;
             _onEnemyShoot = onEnemyShoot;
             _onEdge = OnEdge;
+            _onMove = OnMove;
         }
 
         protected override void InitRenderModel(IEnemyModel model)
         {
-            //transform.position = _model.position;
+
         }
 
         protected override void UpdateRenderModel(IEnemyModel model)
         {
-            //transform.position = _model.position;
+
         }
 
         private void Update()
         {
             timer += Time.deltaTime;
-            _onMove?.Invoke();
             OnEdge();
+            _onMove?.Invoke();
             if (timer >= 1.5f)
             {
                 _onEnemyShoot?.Invoke();
@@ -65,6 +63,11 @@ namespace SpaceInvader.Module.Enemy
             {
                 _onEdge?.Invoke();
             }
+        }
+
+        public void SetPosition(Vector3 position)
+        {
+            transform.position = position;
         }
     }
 

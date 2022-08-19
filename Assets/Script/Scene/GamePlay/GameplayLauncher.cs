@@ -21,7 +21,6 @@ namespace SpaceInvader.Gameplay
     {
         private SpaceshipController _spaceship;
         private InputController _input;
-        private EnemyController _enemy;
         private UIController _uI;
         private EnemyPoolController _enemyPool;
 
@@ -40,7 +39,6 @@ namespace SpaceInvader.Gameplay
                 new SpaceshipController(),
                 new InputController(),
                 new BulletController(),
-                new EnemyController(),
                 new ScoreHandlerController(),
                 new LivesHandlerController(),
                 new UIController(),
@@ -53,7 +51,6 @@ namespace SpaceInvader.Gameplay
             _bullet.SetView(_view.bulletView);
             _spaceship.SetView(_view.SpaceshipView);
             _input.SetView(_view.InputView);
-            _enemy.SetView(_view.EnemyView);
             _uI.SetView(_view.UIView);
             _enemyPool.SetView(_view.EnemyPoolView);
             yield return null;
