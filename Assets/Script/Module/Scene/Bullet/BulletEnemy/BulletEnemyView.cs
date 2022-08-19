@@ -26,7 +26,7 @@ namespace SpaceInvader.Gameplay.Bullet
 
         private void Update()
         {
-            Vector3 position = transform.position + (Vector3.up * Time.deltaTime * 5f);
+            Vector3 position = transform.position + (Vector3.down * Time.deltaTime * 5f);
             SetPosition(position);
             OnEdge();
         }
@@ -50,7 +50,7 @@ namespace SpaceInvader.Gameplay.Bullet
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            Debug.Log(collision);
+            //Debug.Log(collision);
             if (collision.gameObject.name == "DestroyerBullet")
             {
                 DestroyBullet(gameObject);

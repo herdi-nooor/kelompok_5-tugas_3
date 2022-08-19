@@ -60,7 +60,8 @@ namespace SpaceInvader.Gameplay
         public void OnEnemyBulletFire(EnemyBulletMessage message)
         {
             // isi parameter dengan data yang ada di message message
-            Debug.Log(_bulletEnemy); //null
+            //Debug.Log(_bulletEnemy); //null
+            //Debug.Log("message = + " + message.EnemyPosition);
             _bulletEnemy.OnEnemyBulletFire(message.EnemyPosition);
         }
 
