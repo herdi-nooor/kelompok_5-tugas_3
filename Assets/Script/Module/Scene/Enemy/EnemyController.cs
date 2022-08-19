@@ -25,6 +25,7 @@ namespace SpaceInvader.Module.Enemy
         public void OnEnemyShoot()
         {
             Debug.Log("Enemey fire!");
+            Debug.Log(_model.position);
             Publish(new EnemyBulletMessage(_model.position));
         }
 
