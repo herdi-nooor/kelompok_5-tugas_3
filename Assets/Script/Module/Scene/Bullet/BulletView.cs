@@ -8,6 +8,7 @@ namespace SpaceInvader.Gameplay.Bullet
     public class BulletView : ObjectView<IBaseBullet>
     {
 
+        private UnityAction _destroyBullet;
         public void OnEdge()
         {
             float frustrumPositionUp = Camera.main.ViewportToWorldPoint(new Vector2(0, 1)).y;
@@ -19,8 +20,9 @@ namespace SpaceInvader.Gameplay.Bullet
             }
         }
 
-        public void SetCallbacks()
+        public void SetCallbacks(UnityAction destroyBullet)
         {
+            _destroyBullet = destroyBullet;
         }
 
         private void Update()
@@ -43,7 +45,7 @@ namespace SpaceInvader.Gameplay.Bullet
             transform.position = position;
         }
 
-        private void DestroyBullet(GameObject bullet)
+        public void DestroyBullet(GameObject bullet)
         {
             Destroy(bullet);
         }
@@ -51,16 +53,9 @@ namespace SpaceInvader.Gameplay.Bullet
         private void OnTriggerEnter2D(Collider2D collision)
         {
             Debug.Log(collision);
-            if (collision.gameObject.name == "DestroyerBullet")
-            {
-                DestroyBullet(gameObject);
-            }if (collision.gameObject.tag == "Enemy")
-            {
-                DestroyBullet(gameObject);
-            }
             if (collision.gameObject.tag == "Enemy")
             {
-                DestroyBullet(gameObject);
+                _destroyBullet?.Invoke();
             }
 
         }

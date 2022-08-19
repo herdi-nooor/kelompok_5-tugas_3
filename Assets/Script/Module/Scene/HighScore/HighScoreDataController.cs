@@ -23,6 +23,11 @@ namespace SpaceInvader.Menu.HighScore
             return keys;
             //Publish(new HighScoreMessage());
         }
+
+        public void SaveData(string name, int score)
+        {
+            _model.Add(name, score);
+        }
         
     }
 

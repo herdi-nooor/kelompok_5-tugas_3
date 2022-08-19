@@ -1,5 +1,6 @@
 using Agate.MVC.Base;
 using SpaceInvader.Gameplay.Bullet;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,7 @@ namespace SpaceInvader.Gameplay.Bullet
 {
     public class BulletController : ObjectController<BulletController, 
         BulletModel, IBaseBullet, BulletView>
+        // gunakan di
     {
 
 
@@ -26,7 +28,12 @@ namespace SpaceInvader.Gameplay.Bullet
         public override void SetView(BulletView view)
         {
             base.SetView(view);
-            view.SetCallbacks();
+            view.SetCallbacks(DestroyBullet);
+        }
+
+        private void DestroyBullet()
+        {
+            _view.DestroyBullet(_view.gameObject);
         }
 
         public void OnSpaceshipBulletFire(Vector3 positionTemp)
@@ -47,6 +54,8 @@ namespace SpaceInvader.Gameplay.Bullet
 
             
         }
+
+
 
     }
 

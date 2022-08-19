@@ -8,9 +8,14 @@ namespace SpaceInvader.Gameplay.GameOver
 {
     public class GameOverModel : BaseModel, IGameOverModel
     {
-        public int score { get; private set; }
+        public int Score { get; private set; }
+        public string Name { get; private set; }
 
-
+        public void GetScore(int score)
+        {
+            Score = score;
+            SetDataAsDirty();
+        }
     }
 
 }

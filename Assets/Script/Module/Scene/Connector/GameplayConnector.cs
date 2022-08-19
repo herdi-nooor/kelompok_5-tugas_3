@@ -100,6 +100,12 @@ namespace SpaceInvader.Gameplay
             _enemyPool.OnEnemyDied();
         }
 
+        //
+        public void GetScore(SaveHighscoreMessage message)
+        {
+            _gameOver.GetScore(message.Score);
+        }
+
         protected override void Connect()
         {
             Subscribe<MoveLeftMessage>(OnMoveLeft);
@@ -112,6 +118,7 @@ namespace SpaceInvader.Gameplay
             Subscribe<SpaceshipBulletMessage>(OnSpaceshipBulletFire);
             Subscribe<EnemyBulletMessage>(OnEnemyBulletFire);
             Subscribe<AddScoreMessage>(OnScored);
+            Subscribe<SaveHighscoreMessage>(GetScore);
             Subscribe<GameOverMessage>(OnGameOver);
             Subscribe<LoseLivesMessage>(OnSpaceshipHit);
             Subscribe<UpdateScoreMessage>(OnScoreUpdate);
@@ -130,6 +137,7 @@ namespace SpaceInvader.Gameplay
             Unsubscribe<SpaceshipBulletMessage>(OnSpaceshipBulletFire);
             Unsubscribe<EnemyBulletMessage>(OnEnemyBulletFire);
             Unsubscribe<AddScoreMessage>(OnScored);
+            Unsubscribe<SaveHighscoreMessage>(GetScore);
             Unsubscribe<GameOverMessage>(OnGameOver);
             Unsubscribe<LoseLivesMessage>(OnSpaceshipHit);
             Unsubscribe<UpdateScoreMessage>(OnScoreUpdate);
