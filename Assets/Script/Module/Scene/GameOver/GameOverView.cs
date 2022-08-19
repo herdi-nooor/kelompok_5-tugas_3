@@ -8,7 +8,6 @@ namespace SpaceInvader.Gameplay.GameOver
 {
     public class GameOverView : ObjectView<IGameOverModel>
     {
-        [SerializeField] private TextMeshProUGUI textPanel;
 
         protected override void InitRenderModel(IGameOverModel model)
         {
@@ -20,11 +19,11 @@ namespace SpaceInvader.Gameplay.GameOver
             throw new System.NotImplementedException();
         }
 
-        private string GetdataPlayer()
+        private void GetdataPlayer()
         {
-            string name = textPanel.GetComponent<TextMeshProUGUI>().text;
+            TextMeshProUGUI nametPrefab = Resources.Load<TextMeshProUGUI>(@"Prefabs/Bullet");
+            string name = GetComponent<TextMeshProUGUI>().text;
             
-            return name;
         }
     }
 

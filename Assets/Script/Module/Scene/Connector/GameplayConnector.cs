@@ -10,6 +10,7 @@ using SpaceInvader.Module.LivesHandler;
 using SpaceInvader.Module.UI;
 using SpaceInvader.Module.EnemyPool;
 using SpaceInvader.Module.Enemy;
+using SpaceInvader.Gameplay.GameOver;
 
 namespace SpaceInvader.Gameplay
 {
@@ -24,6 +25,8 @@ namespace SpaceInvader.Gameplay
         private UIController _uI;
         private EnemyPoolController _enemyPool;
         private EnemyController _enemy;
+        private GameOverController _gameOver;
+        
 //        private UIController _uIController;
         
         public void OnMoveLeft(MoveLeftMessage message)
@@ -42,15 +45,7 @@ namespace SpaceInvader.Gameplay
         }
 
         //buat fungsi baru
-        /*public void OnMoveBullet(MoveBulletMessage message)
-        {
             // panggil fungsi yang ada di controller objectnya
-            _bullet.OnMoveBullet();
-        }*//*
-        public void OnMoveBulletEnemy(MoveBulletEnemyMessage message)
-        {
-            _bulletEnemy.OnMoveBulletEnemy();
-        }*/
 
         public void OnSpaceshipBulletFire(SpaceshipBulletMessage message)
         {
