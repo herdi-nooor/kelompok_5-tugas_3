@@ -26,7 +26,7 @@ namespace SpaceInvader.Gameplay.Bullet
 
         private void Update()
         {
-            Vector3 position = transform.position + (Vector3.up * Time.deltaTime * 5f);
+            Vector3 position = transform.position + (Vector3.down * Time.deltaTime * 5f);
             SetPosition(position);
             OnEdge();
         }

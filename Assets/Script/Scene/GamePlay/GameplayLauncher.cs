@@ -42,7 +42,8 @@ namespace SpaceInvader.Gameplay
                 new ScoreHandlerController(),
                 new LivesHandlerController(),
                 new UIController(),
-                new EnemyPoolController()
+                new EnemyPoolController(),
+                new BulletEnemyController()
             };
         }
 
